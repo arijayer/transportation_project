@@ -1,0 +1,752 @@
+{
+  "datasets": [
+    {
+      "name": "e4431fc3",
+      "displayName": "fact_trips",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips"
+      ]
+    },
+    {
+      "name": "18252922",
+      "displayName": "fact_trips_chandigarh",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_chandigarh"
+      ]
+    },
+    {
+      "name": "42659190",
+      "displayName": "fact_trips_coimbatore",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_coimbatore"
+      ]
+    },
+    {
+      "name": "92d84d5b",
+      "displayName": "fact_trips_indore",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_indore"
+      ]
+    },
+    {
+      "name": "29492846",
+      "displayName": "fact_trips_jaipur",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_jaipur"
+      ]
+    },
+    {
+      "name": "18a10d11",
+      "displayName": "fact_trips_kochi",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_kochi"
+      ]
+    },
+    {
+      "name": "6104ab04",
+      "displayName": "fact_trips_lucknow",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_lucknow"
+      ]
+    },
+    {
+      "name": "fc51dd29",
+      "displayName": "fact_trips_mysore",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_mysore"
+      ]
+    },
+    {
+      "name": "fd894fa3",
+      "displayName": "fact_trips_surat",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_surat"
+      ]
+    },
+    {
+      "name": "fc867931",
+      "displayName": "fact_trips_vadodara",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_vadodara"
+      ]
+    },
+    {
+      "name": "4e37505e",
+      "displayName": "fact_trips_visakhapatnam",
+      "queryLines": [
+        "SELECT * FROM transportation.gold.fact_trips_visakhapatnam"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "d45331cd",
+      "displayName": "global_trips_dashboard",
+      "layout": [
+        {
+          "widget": {
+            "name": "80e71a34",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"text-align:center;display:block\"><span style=\"font-size: 36px;line-height: 1.5;color: #077A9D;\">**Cab' s trips Analysis**</span></span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "total-sales-amount",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "sum(sales_amt)",
+                      "expression": "SUM(`sales_amt`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(sales_amt)"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Total Sales Amount",
+                "headerAlignment": "center"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "f7af2864",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "avg(driver_rating)",
+                      "expression": "AVG(`driver_rating`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg(driver_rating)"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Average Driver Rating",
+                "headerAlignment": "center"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 2,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "5e444d16",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "count(id)",
+                      "expression": "COUNT(`id`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "count(id)"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Total number of Trips",
+                "headerAlignment": "center"
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 2,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "number-of-trips-per-city",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "city_name",
+                      "expression": "`city_name`"
+                    },
+                    {
+                      "name": "countdistinct(id)",
+                      "expression": "COUNT(DISTINCT `id`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "city_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "countdistinct(id)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Number of trips per city",
+                "headerAlignment": "center"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "passenger-category-distribution",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "count(id)",
+                      "expression": "COUNT(`id`)"
+                    },
+                    {
+                      "name": "passenger_category",
+                      "expression": "`passenger_category`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "count(id)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "passenger_category",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": "new",
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 6
+                        }
+                      }
+                    ]
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "title": "Passenger Category Distribution",
+                "showTitle": true,
+                "headerAlignment": "center"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 4,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "monthly-trip-count",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "monthly(business_date)",
+                      "expression": "DATE_TRUNC(\"MONTH\", `business_date`)"
+                    },
+                    {
+                      "name": "count(id)",
+                      "expression": "COUNT(`id`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "monthly(business_date)",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(id)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "title": "Trip Count Over Time",
+                "showTitle": true,
+                "headerAlignment": "center"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 6,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "distinct-trips-weekends-vs-weekdays",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "countdistinct(id)",
+                      "expression": "COUNT(DISTINCT `id`)"
+                    },
+                    {
+                      "name": "is_weekend",
+                      "expression": "`is_weekend`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "countdistinct(id)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "is_weekend",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": true,
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 6
+                        }
+                      }
+                    ]
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "title": "Distinct Trips on Weekends vs Weekdays",
+                "showTitle": true,
+                "headerAlignment": "center"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 15,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "distinct-passenger-ratings",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "passenger_rating",
+                      "expression": "`passenger_rating`"
+                    },
+                    {
+                      "name": "countdistinct(id)",
+                      "expression": "COUNT(DISTINCT `id`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "passenger_rating",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "countdistinct(id)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "title": "Distinct Passenger Ratings",
+                "showTitle": true,
+                "headerAlignment": "center"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 15,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "comparisation-of-the",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "passenger_rating",
+                      "expression": "`passenger_rating`"
+                    },
+                    {
+                      "name": "city_name",
+                      "expression": "`city_name`"
+                    },
+                    {
+                      "name": "sum(sales_amt)",
+                      "expression": "SUM(`sales_amt`)"
+                    }
+                  ],
+                  "cubeGroupingSets": {
+                    "sets": [
+                      {
+                        "fieldNames": [
+                          "passenger_rating"
+                        ]
+                      },
+                      {
+                        "fieldNames": [
+                          "city_name"
+                        ]
+                      }
+                    ]
+                  },
+                  "disaggregated": false,
+                  "orders": [
+                    {
+                      "direction": "ASC",
+                      "expression": "`passenger_rating`"
+                    },
+                    {
+                      "direction": "ASC",
+                      "expression": "`city_name`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pivot",
+              "encodings": {
+                "rows": [
+                  {
+                    "fieldName": "passenger_rating",
+                    "total": {
+                      "show": true
+                    }
+                  }
+                ],
+                "columns": [
+                  {
+                    "fieldName": "city_name",
+                    "total": {
+                      "show": true
+                    }
+                  }
+                ],
+                "cell": {
+                  "type": "multi-cell",
+                  "fields": [
+                    {
+                      "fieldName": "sum(sales_amt)",
+                      "cellType": "text"
+                    }
+                  ]
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Comparison of Sales Amount Across Cities by Passenger Rating",
+                "headerAlignment": "center"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 21,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "dc2f14e9",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "76793bc7",
+            "queries": [
+              {
+                "name": "dashboards/01f0f84d45671a7ab0ea3ebdf87af166/datasets/01f0f84d5fb3137b91000c2e6f516345_month_name",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "month_name",
+                      "expression": "`month_name`"
+                    },
+                    {
+                      "name": "month_name_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "month_name",
+                    "queryName": "dashboards/01f0f84d45671a7ab0ea3ebdf87af166/datasets/01f0f84d5fb3137b91000c2e6f516345_month_name"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "3a7ec872",
+            "queries": [
+              {
+                "name": "dashboards/01f0f84d45671a7ab0ea3ebdf87af166/datasets/01f0f84d5fb3137b91000c2e6f516345_month",
+                "query": {
+                  "datasetName": "e4431fc3",
+                  "fields": [
+                    {
+                      "name": "month",
+                      "expression": "`month`"
+                    },
+                    {
+                      "name": "month_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "month",
+                    "queryName": "dashboards/01f0f84d45671a7ab0ea3ebdf87af166/datasets/01f0f84d5fb3137b91000c2e6f516345_month"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "canvasBackgroundColor": {
+        "light": "#FAFAFB",
+        "dark": "#1F272D"
+      },
+      "widgetBackgroundColor": {
+        "light": "#FFFFFF",
+        "dark": "#11171C"
+      },
+      "fontColor": {
+        "light": "#11171C",
+        "dark": "#E8ECF0"
+      },
+      "selectionColor": {
+        "light": "#2272B4",
+        "dark": "#8ACAFF"
+      },
+      "visualizationColors": [
+        "#077A9D",
+        "#FFAB00",
+        "#00A972",
+        "#FF3621",
+        "#8BCAE7",
+        "#AB4057",
+        "#99DDB4",
+        "#FCA4A1",
+        "#919191",
+        "#BF7080"
+      ],
+      "widgetHeaderAlignment": "LEFT"
+    },
+    "applyModeEnabled": false
+  }
+}
